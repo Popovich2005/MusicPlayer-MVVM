@@ -11,7 +11,7 @@ import SwiftUI
 struct MusicPlayer_MVVMApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PlayerView()
         }
     }
 }
