@@ -16,6 +16,7 @@
 		3A7E3E3B2C2D795000331BED /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E3E3A2C2D795000331BED /* Model.swift */; };
 		3A7E3E3D2C2D7B0600331BED /* SongCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E3E3C2C2D7B0600331BED /* SongCell.swift */; };
 		3A7E3E3F2C2D8A5B00331BED /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E3E3E2C2D8A5B00331BED /* ViewModel.swift */; };
+		3A7E3E412C2D8EE900331BED /* ImportFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E3E402C2D8EE900331BED /* ImportFileManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		3A7E3E3A2C2D795000331BED /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3A7E3E3C2C2D7B0600331BED /* SongCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCell.swift; sourceTree = "<group>"; };
 		3A7E3E3E2C2D8A5B00331BED /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		3A7E3E402C2D8EE900331BED /* ImportFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportFileManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				3A7E3E382C2D72D500331BED /* Font + Extention.swift */,
+				3A7E3E402C2D8EE900331BED /* ImportFileManager.swift */,
 			);
 			path = Hellper;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A7E3E412C2D8EE900331BED /* ImportFileManager.swift in Sources */,
 				3A7E3E3B2C2D795000331BED /* Model.swift in Sources */,
 				3A7E3E362C2D6F2C00331BED /* BackgroundView.swift in Sources */,
 				3A7E3E262C2D6B9000331BED /* PlayerView.swift in Sources */,

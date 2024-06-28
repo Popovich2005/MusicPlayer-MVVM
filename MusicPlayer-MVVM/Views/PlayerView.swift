@@ -11,6 +11,7 @@ struct PlayerView: View {
     
     // MARK: - Properties
     @StateObject var vm = ViewModel()
+    @State var showFiles = false
     
     // MARK: - Body
     var body: some View {
@@ -31,7 +32,7 @@ struct PlayerView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
-                        
+                        showFiles.toggle()
                     } label: {
                         Image(systemName: "plus")
                             .foregroundStyle(.white)
@@ -39,6 +40,10 @@ struct PlayerView: View {
                     }
                 }
             }
+            // MARK: File's Sheet
+            .sheet(isPresented: $showFiles, content: {
+                ImportFileManager(songs: $vm.songs)
+            })
         }
     }
 }

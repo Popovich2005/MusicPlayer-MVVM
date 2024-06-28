@@ -9,13 +9,5 @@ import Foundation
 
 final class ViewModel: ObservableObject {
     
-    @Published var songs: [SongModel] = [
-        SongModel(
-        name: "gg",
-        data: Data(),
-        artist: "kk",
-        coverImage: Data(),
-        duration: 0
-    )
-    ]
+    @Published var songs: [SongModel] = []
 }
