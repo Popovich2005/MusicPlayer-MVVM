@@ -22,7 +22,10 @@ struct PlayerView: View {
                 /// List of songs
                 List {
                     ForEach(vm.songs) { song in
-                        SongCell(song: song)
+                        SongCell(song: song, durationFormated: vm.durationFormated)
+                            .onTapGesture {
+                                vm.playAudio(song: song)
+                            }
                     }
                 }
                 .listStyle(.plain)
