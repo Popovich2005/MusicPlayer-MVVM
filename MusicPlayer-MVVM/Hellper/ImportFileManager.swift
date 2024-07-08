@@ -8,11 +8,10 @@
 import Foundation
 import SwiftUI
 import AVFoundation
+import RealmSwift
 
 /// ImportFileManager позволяет выбирать аудиофайлы и импортировать их в приложение
 struct ImportFileManager: UIViewControllerRepresentable {
-    
-    @Binding var songs: [SongModel]
     
     /// Координатор управляет задачами меду SwiftUI и UIKit
     func makeCoordinator() -> Coordinator {
@@ -42,13 +41,17 @@ struct ImportFileManager: UIViewControllerRepresentable {
     /// Координатор служит связующим звеном между UIDocumentPicker и ImportFileManager
     final class Coordinator: NSObject, UIDocumentPickerDelegate {
         
+        // MARK: - Properties
         /// Ссылка на родительский компонент ImportFileManager, чтобы можно было с ним взаимодействовать
         var parent: ImportFileManager
+        @ObservedResults(SongModel.self) var songs
         
+        // MARK: - Init
         init(parent: ImportFileManager) {
             self.parent = parent
         }
         
+        // MARK: - Methods
        /// Метод вызывается когда пользователь выбирает песню
        /// Метод обрабатывает выбранный URL и создает песню с типом SongModel и после добавляет песню в массив songs
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
@@ -92,11 +95,11 @@ struct ImportFileManager: UIViewControllerRepresentable {
                 /// Получение продолжительность песни
                 song.duration = CMTimeGetSeconds(assent.duration)
                 
+                let isDuplicate = songs.contains { $0.name == song.name && $0.artist == song.artist }
+                
                 /// Добавление песни в массив songs если там такой еще нет
-                if !self.parent.songs.contains(where: { $0.name == song.name }) {
-                    DispatchQueue.main.async {
-                        self.parent.songs.append(song)
-                    }
+                if !isDuplicate {
+                    $songs.append(song)
                 } else {
                     print("Song with the name already exists")
                 }
