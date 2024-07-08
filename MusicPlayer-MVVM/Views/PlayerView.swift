@@ -23,6 +23,8 @@ struct PlayerView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                
+                // MARK: - Background
                 BackgroundView()
                 
                 
@@ -36,6 +38,7 @@ struct PlayerView: View {
                                     vm.playAudio(song: song)
                                 }
                         }
+                        .onDelete(perform: vm.delete)
                     }
                     .listStyle(.plain)
                     
@@ -56,7 +59,6 @@ struct PlayerView: View {
                         }
                         
                     }
-                 
                 }
             }
             
@@ -88,24 +90,7 @@ struct PlayerView: View {
             HStack {
                 
                 ///Cover
-                if let data = vm.currentSong?.coverImage, let uiImage = UIImage(data: data) {
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: frameImage, height: frameImage)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                } else {
-                    ZStack {
-                        Color.gray
-                            .frame(width: frameImage, height: frameImage)
-                        Image(systemName: "music.note")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 30)
-                            .foregroundColor(.white)
-                    }
-                    .cornerRadius(10)
-                }
+                SongImageView(imageData: vm.currentSong?.coverImage, size: frameImage)
                 
                 if !showDetails {
                     
@@ -165,13 +150,16 @@ struct PlayerView: View {
                     
                     HStack(spacing: 40) {
                         CustomButton(image: "backward.end.fill", size: .title2) {
-                            //
+                            vm.backward()
                         }
-                        CustomButton(image: "play.circle.fill", size: .largeTitle) {
-                            //
+                        CustomButton(image: vm.isPlaying
+                                     ? "pause.circle.fill"
+                                     : "play.circle.fill",
+                                     size: .largeTitle) {
+                            vm.playPause()
                         }
                         CustomButton(image: "forward.end.fill", size: .title2) {
-                            //
+                            vm.forward()
                         }
                     }
                 }
